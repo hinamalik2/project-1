@@ -1,0 +1,48 @@
+/* globals.css */
+
+/* Importing Tailwind CSS base styles */
+@import 'tailwindcss/base';
+
+/* Importing Tailwind CSS components */
+@import 'tailwindcss/components';
+
+/* Importing Tailwind CSS utilities */
+@import 'tailwindcss/utilities';
+
+/* Global styles */
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif; /* Example font, can be changed */
+    background-color: #f9fafb; /* Light background color */
+    color: #111827; /* Dark text color */
+    line-height: 1.5;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    font-weight: 600; /* Semi-bold headings */
+}
+
+a {
+    color: #3b82f6; /* Blue link color */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+/* Utility classes for spacing */
+.mt-4 {
+    margin-top: 1rem;
+}
+
+.mb-4 {
+    margin-bottom: 1rem;
+}
+
+.p-4 {
+    padding: 1rem;
+}
+
+/* Add any additional global styles below */

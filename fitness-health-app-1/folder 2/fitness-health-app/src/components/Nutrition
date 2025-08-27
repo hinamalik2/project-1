@@ -1,0 +1,57 @@
+import React, { useState } from 'react';
+
+const Nutrition = () => {
+    const [meals, setMeals] = useState([]);
+    const [mealInput, setMealInput] = useState('');
+    const [caloriesInput, setCaloriesInput] = useState('');
+
+    const handleAddMeal = () => {
+        if (mealInput && caloriesInput) {
+            setMeals([...meals, { name: mealInput, calories: caloriesInput }]);
+            setMealInput('');
+            setCaloriesInput('');
+        }
+    };
+
+    const handleRemoveMeal = (index) => {
+        const newMeals = meals.filter((_, i) => i !== index);
+        setMeals(newMeals);
+    };
+
+    return (
+        <div className="nutrition-container">
+            <h2 className="text-2xl font-bold">Nutrition Tracking</h2>
+            <div className="meal-input">
+                <input
+                    type="text"
+                    placeholder="Meal Name"
+                    value={mealInput}
+                    onChange={(e) => setMealInput(e.target.value)}
+                    className="border p-2 rounded"
+                />
+                <input
+                    type="number"
+                    placeholder="Calories"
+                    value={caloriesInput}
+                    onChange={(e) => setCaloriesInput(e.target.value)}
+                    className="border p-2 rounded"
+                />
+                <button onClick={handleAddMeal} className="bg-blue-500 text-white p-2 rounded">
+                    Add Meal
+                </button>
+            </div>
+            <ul className="meal-list mt-4">
+                {meals.map((meal, index) => (
+                    <li key={index} className="flex justify-between items-center border-b py-2">
+                        <span>{meal.name} - {meal.calories} calories</span>
+                        <button onClick={() => handleRemoveMeal(index)} className="text-red-500">
+                            Remove
+                        </button>
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
+};
+
+export default Nutrition;

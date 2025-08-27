@@ -1,0 +1,37 @@
+import React from 'react';
+import { useEffect, useState } from 'react';
+import { fetchWorkouts, fetchNutrition, fetchProgress } from '../../lib/api'; // Assuming you have an API utility for fetching data
+import DashboardCard from './DashboardCard'; // A reusable component for displaying cards
+
+const Dashboard = () => {
+    const [workouts, setWorkouts] = useState([]);
+    const [nutrition, setNutrition] = useState([]);
+    const [progress, setProgress] = useState([]);
+
+    useEffect(() => {
+        const loadData = async () => {
+            const workoutsData = await fetchWorkouts();
+            const nutritionData = await fetchNutrition();
+            const progressData = await fetchProgress();
+
+            setWorkouts(workoutsData);
+            setNutrition(nutritionData);
+            setProgress(progressData);
+        };
+
+        loadData();
+    }, []);
+
+    return (
+        <div className="dashboard">
+            <h1 className="text-2xl font-bold">Dashboard</h1>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <DashboardCard title="Workouts" data={workouts} />
+                <DashboardCard title="Nutrition" data={nutrition} />
+                <DashboardCard title="Progress" data={progress} />
+            </div>
+        </div>
+    );
+};
+
+export default Dashboard;
